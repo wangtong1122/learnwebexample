@@ -79,3 +79,32 @@ var mult1 = (function (params) {
 
 
 // 3.1.3 闭包和面向对象设计
+var createCommand = function (receiver) {
+    // var execute = function () {
+    //     return receiver.open()
+    // }
+    // var undo = function () {
+    //     return receiver.undo()
+    // }
+    return {
+        execute:receiver.open,
+        undo:receiver.undo
+    }
+
+}
+
+var Tv={
+    open:function () {
+        console.log('打打开')
+    },
+    undo:function () {
+        console.log("大萨达大概") 
+    }
+}
+
+ var newC = createCommand(Tv)
+ newC.execute()
+ newC.undo()
+
+ //3.1.6 闭包与内存管理
+ //闭包是一个非常强大的特性，但人们对其也有诸多误解。一种耸人听闻的说法是闭包会造成内存泄露，所以要尽量减少闭包的使用。
